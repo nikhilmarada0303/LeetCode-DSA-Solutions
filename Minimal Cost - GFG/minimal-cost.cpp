@@ -6,21 +6,22 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
- int F(vector<int>&height,int ind,int k,vector<int>&dp){
+  int F(vector<int>&height,int ind,int k,vector<int>&dp){
       if(ind==0)
       return 0;
-      int m=INT_MAX;
-      int j=INT_MAX;
+      int min_steps=INT_MAX;
+      int jumps=INT_MAX;
 	if(dp[ind]!=-1) return dp[ind];
       for(int i=1;i<=k;i++){
           if(ind>=i)
-          j=F(height,ind-i,k,dp)+abs(height[ind]-height[ind-i]);
-          m=min(m,j);
-      }return dp[ind]=m;
+          jumps=F(height,ind-i,k,dp)+abs(height[ind]-height[ind-i]);
+        	min_steps=min(min_steps,jumps);
+      }return dp[ind]=min_steps;
   }
     int minimizeCost(vector<int>& height, int n, int k) {
         vector<int>dp(n+1,-1);
         return F(height,n-1,k,dp);
+    
     }
 };
 
