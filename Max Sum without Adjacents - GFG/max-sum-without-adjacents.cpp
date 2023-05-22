@@ -9,19 +9,21 @@ using namespace std;
 class Solution{
 public:	
 	int findMaxSum(int *arr, int n) {
-	    // code here
-	   vector<int>dp(n+1,-1);
-	dp[0]=arr[0];
 	int pick;
+	int prev2=0;
+	int prev=arr[0];
 	   for(int i=1;i<n;i++){
 	       if(i>1)
-	       pick=arr[i]+dp[i-2];
+	       pick=arr[i]+prev2;
 	       else
 	       pick=arr[i];
-	       int not_pick=0+dp[i-1];
-	       dp[i]=max(pick,not_pick);
+	       int not_pick=0+prev;
+	       int curr=max(pick,not_pick);
+	       
+	       prev2=prev;
+	       prev=curr;
 	   }
-	return dp[n-1];
+	return prev;
 	}
 };
 
