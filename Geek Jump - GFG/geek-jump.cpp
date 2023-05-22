@@ -9,18 +9,17 @@ using namespace std;
 
 class Solution {
   public:
-    int func(vector<int>&dp,vector<int>&h,int ind){
-        if(ind ==0) return 0;
-        if(dp[ind]!=-1) return dp[ind];
-        int left=func(dp,h,ind-1)+abs(h[ind]-h[ind-1]);
-        int right=INT_MAX;
-        if(ind>1)
-        right=func(dp,h,ind-2)+abs(h[ind]-h[ind-2]);
-        return dp[ind]=((left>right)?right:left);
-    }
+    
     int minimumEnergy(vector<int>& h, int n) {
-	  vector<int>dp(n+1,-1);
-        return func(dp,h,n-1);
+	  vector<int>dp(n,-1);
+        dp[0]=0;
+        for(int i=1;i<n;i++){
+            int left=dp[i-1]+abs(h[i]-h[i-1]);
+            int right=INT_MAX;
+            if(i>1)
+            right=dp[i-2]+abs(h[i]-h[i-2]);
+            dp[i]=((left>right)?right:left);
+        }return dp[n-1];
     }
 };
 
