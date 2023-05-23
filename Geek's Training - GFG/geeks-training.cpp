@@ -6,25 +6,23 @@ using namespace std;
 class Solution {
   public:
     int maximumPoints(vector<vector<int>>& points, int n) {
-        vector<vector<int>>dp(n,vector<int>(4,-1));
-        dp[0][0]=max(points[0][1],points[0][2]);
-        dp[0][1]=max(points[0][2],points[0][0]);
-        dp[0][2]=max(points[0][1],points[0][0]);
-        dp[0][3]=max(points[0][1],max(points[0][2],points[0][0]));
+        vector<int>prev(4,0);
+        prev[0]=max(points[0][1],points[0][2]);
+        prev[1]=max(points[0][2],points[0][0]);
+        prev[2]=max(points[0][1],points[0][0]);
+        prev[3]=max(points[0][1],max(points[0][2],points[0][0]));
         for(int day=1;day<n;day++){
+            vector<int>temp(4,0);
             for(int last=0;last<4;last++){
-            dp[day][last]=0;
-            int maxi=0;
+                temp[last]=0;
             for(int task=0;task<3;task++){
                 if(task!=last){
-                    int point_s=points[day][task]+dp[day-1][task];
-                    maxi=max(maxi,point_s);
+                    temp[last]=max(temp[last],points[day][task]+prev[task]);
                 }
             }
-            dp[day][last]=maxi;
-            }
+            }prev=temp;
         }
-        return dp[n-1][3];
+        return prev[3];
     }
 };
 
