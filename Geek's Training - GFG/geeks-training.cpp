@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-  int func(int ind,int last,vector<vector<int>>&points,vector<vector<int>>&dp){
+    int func(int ind,int last,vector<vector<int>>&points,vector<vector<int>>&dp){
       if(ind==0){
           int maxi=0;
           for(int task=0;task<3;task++){
