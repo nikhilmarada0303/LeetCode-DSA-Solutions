@@ -8,24 +8,20 @@ class Solution
 {
     public:
     //Function to return max value that can be put in knapsack of capacity W.
-    int func(int ind,int W,int wt[],int val[], vector<vector<int>>&dp){
-        if(ind==0 ){
-            if(wt[ind]<=W)
-            return val[ind];
-            else
-            return 0;
-        }
-        if(dp[ind][W]!=-1) return dp[ind][W];
-        int notTake=0+func(ind-1,W,wt,val,dp);
-        int take=INT_MIN;
-        if(wt[ind]<=W)
-        take=val[ind]+func(ind-1,W-wt[ind],wt,val,dp);
-        return dp[ind][W]=max(take,notTake);
-    }
     int knapSack(int W, int wt[], int val[], int n) 
     { 
-        vector<vector<int>>dp(n,vector<int>(W+1,-1));
-       return func(n-1,W,wt,val,dp);
+        vector<int>prev(W+1,0),curr(W+1,0);
+       for(int i=wt[0];i<=W;i++)
+       prev[i]=val[0];
+       for(int ind=1;ind<n;ind++){
+           for(int W1=0;W1<=W;W1++){
+                int notTake=0+prev[W1];
+                int take=INT_MIN;
+                if(wt[ind]<=W1)
+                take=val[ind]+prev[W1-wt[ind]];
+                curr[W1]=max(take,notTake);
+           }prev=curr;
+       }return prev[W];
     }
 };
 
