@@ -6,28 +6,29 @@ using namespace std;
 class Solution{
 
 	public:
-int mod=(int)(1e9+7);
-int func(int ind,int target,int arr[],vector<vector<int>>&dp){
-	    
-	    if(ind==0) {
-	        if(target==0 && arr[ind]==0) return 2;
-	        if(target==0 || target==arr[0]) return 1;
-	        else
-	        return 0;
-	    }
-	    if(dp[ind][target]!=-1) return dp[ind][target];
-	    int take=0;
-	    if(arr[ind]<=target)
-	    take=func(ind-1,target-arr[ind],arr,dp);
-	    int notTake=func(ind-1,target,arr,dp);
-	    return dp[ind][target]=(take + notTake)%mod;
-	}
+	int mod=(int)(1e9+7);
 	int perfectSum(int arr[], int n, int sum)
 	{
-	    vector<vector<int>>dp(n,vector<int>(sum+1,-1));
-        return func(n-1,sum,arr,dp);
+          vector<vector<int>>dp(n,vector<int>(sum+1,0));
+          if(arr[0]==0)
+          dp[0][0]=2;
+          else
+          dp[0][0]=1;
+          if(arr[0]!=0){
+              if(arr[0]<=sum)
+              dp[0][arr[0]]=1;
+          }
+          for(int ind=1;ind<n;ind++){
+              for(int target=0;target<=sum;target++){
+                   int take=0;
+	                if(arr[ind]<=target)
+	                take=dp[ind-1][target-arr[ind]];
+	                int notTake=dp[ind-1][target];
+	                dp[ind][target]=(take + notTake)%mod;
+              }
+          }return dp[n-1][sum];
 	}
-
+	  
 };
 
 //{ Driver Code Starts.
