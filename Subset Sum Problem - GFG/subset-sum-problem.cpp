@@ -19,7 +19,7 @@ bool isSubsetSum(vector<int>arr, int sum){
         if(arr[0]<=sum) prev[arr[0]]=true;
         
          for(int ind=1;ind<n;ind++){
-             for(int target=1;target<=sum;target++){
+             for(int target=0;target<=sum;target++){
                    bool take=false;
                     if(arr[ind]<=target)
                   take=prev[target-arr[ind]];
