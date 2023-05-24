@@ -19,9 +19,21 @@ class Solution {
         
     }
     long long int count(int coins[], int n, int sum) {
-        vector<vector<long>>dp(n,vector<long>(sum+1,-1));
-        return func(n-1,coins,sum,dp);
+        vector<vector<long>>dp(n,vector<long>(sum+1,0));
+       for(int t=0;t<=sum;t++){
+           dp[0][t]=(t%coins[0]==0);
+       }
+        for(int ind=1;ind<n;ind++){
+            for(int target=0;target<=sum;target++){
+                long long notTake=dp[ind-1][target];
+                long long take=0;
+                if(coins[ind]<=target)
+                take=dp[ind][target-coins[ind]];
+                dp[ind][target]=take+notTake;
         
+            }
+        }
+        return dp[n-1][sum];
     }
 };
 
