@@ -9,16 +9,7 @@ using namespace std;
 
 class Solution{   
 public:
-    bool func(vector<int>&arr,int target,int ind, vector<vector<int>>&dp){
-        if(target==0) return true;
-        if(ind==0) return arr[0]==target;
-        if(dp[ind][target]!=-1) return dp[ind][target];
-        bool take=false;
-        if(arr[ind]<=target)
-        take=func(arr,target-arr[ind],ind-1,dp);
-         bool nottake=func(arr,target,ind-1,dp);
-        return dp[ind][target]=take | nottake;
-    }
+    
    
 bool isSubsetSum(vector<int>arr, int sum){
         int n=arr.size();
