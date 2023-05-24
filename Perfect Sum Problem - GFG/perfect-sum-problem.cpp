@@ -9,24 +9,25 @@ class Solution{
 	int mod=(int)(1e9+7);
 	int perfectSum(int arr[], int n, int sum)
 	{
-          vector<vector<int>>dp(n,vector<int>(sum+1,0));
+         vector<int>prev(sum+1,0),curr(sum+1,0);
           if(arr[0]==0)
-          dp[0][0]=2;
+          prev[0]=2;
           else
-          dp[0][0]=1;
+          prev[0]=1;
           if(arr[0]!=0){
               if(arr[0]<=sum)
-              dp[0][arr[0]]=1;
+              prev[arr[0]]=1;
           }
           for(int ind=1;ind<n;ind++){
               for(int target=0;target<=sum;target++){
                    int take=0;
 	                if(arr[ind]<=target)
-	                take=dp[ind-1][target-arr[ind]];
-	                int notTake=dp[ind-1][target];
-	                dp[ind][target]=(take + notTake)%mod;
+	                take=prev[target-arr[ind]];
+	                int notTake=prev[target];
+	                curr[target]=(take + notTake)%mod;
               }
-          }return dp[n-1][sum];
+              prev=curr;
+          }return prev[sum];
 	}
 	  
 };
