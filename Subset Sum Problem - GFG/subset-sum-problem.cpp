@@ -9,9 +9,7 @@ using namespace std;
 
 class Solution{   
 public:
-    
-   
-bool isSubsetSum(vector<int>arr, int sum){
+  bool isSubsetSum(vector<int>arr, int sum){
         int n=arr.size();
         vector<bool>prev(sum+1,0),curr(sum+1,0);
         
@@ -28,6 +26,7 @@ bool isSubsetSum(vector<int>arr, int sum){
              }prev=curr;
          }return prev[sum];
     }
+
 };
 
 //{ Driver Code Starts.
