@@ -22,8 +22,18 @@ public:
     }
     int knapSack(int n,int W,int val[], int wt[] ) 
     { 
-        vector<vector<int>>dp(n,vector<int>(W+1,-1));
-       return func(n-1,W,wt,val,dp);
+        vector<vector<int>>dp(n,vector<int>(W+1,0));
+        for(int weight=0;weight<=W;weight++)
+        dp[0][weight]=(int)(weight/wt[0])*val[0];
+        for(int ind=1;ind<n;ind++){
+           for(int W1=0;W1<=W;W1++){
+                int notTake=0+dp[ind-1][W1];
+                int take=INT_MIN;
+                if(wt[ind]<=W1)
+                take=val[ind]+dp[ind][W1-wt[ind]];
+                dp[ind][W1]=max(take,notTake);
+           }
+       }return dp[n-1][W];
     }
 };
 
