@@ -9,7 +9,7 @@ public:
         for(int i=0;i<n;i++){
             hash[i]=i;
             for(int prev=0;prev<i;prev++){
-                if(((arr[i]%arr[prev]==0) || (arr[prev]%arr[i]==0)) && 1+dp[prev]>dp[i]){
+                if((arr[i]%arr[prev]==0)  && 1+dp[prev]>dp[i]){
                     dp[i]=1+dp[prev];
                     hash[i]=prev;
                 }
