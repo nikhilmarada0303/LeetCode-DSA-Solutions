@@ -1,24 +1,28 @@
 class Solution {
 public:
-   vector<int> largestDivisibleSubset(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        int n = nums.size(), maxIndex = 0, ans = INT_MIN;
-        vector<int> dp(n, 1), parent(n, -1), sol; //dp[i] = maxLength of subset till ith index & parent[i] is used to store the index of element included before we include ith element
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < i; j++) {
-                if((nums[j] % nums[i] == 0 || nums[i] % nums[j] == 0) && dp[i] < dp[j] + 1) {
-                    dp[i] = dp[j] + 1;
-                    parent[i] = j;
+    vector<int> largestDivisibleSubset(vector<int>& arr) {
+         int n=arr.size();
+         vector<int>dp(n,1),hash(n);
+         sort(arr.begin(),arr.end());
+        int maxi=INT_MIN;
+        int lastindex=1;
+        for(int i=0;i<n;i++){
+            hash[i]=i;
+            for(int prev=0;prev<i;prev++){
+                if(((arr[i]%arr[prev]==0) || (arr[prev]%arr[i]==0)) && 1+dp[prev]>dp[i]){
+                    dp[i]=1+dp[prev];
+                    hash[i]=prev;
                 }
+            }if(dp[i]>maxi){
+                maxi=dp[i];
+                lastindex=i;
             }
-            if(dp[i] > ans) { //update ans and index of last element included when larger subset found
-                ans = dp[i];
-                maxIndex = i;
-            }
+        }vector<int>temp;
+        temp.push_back(arr[lastindex]);
+        while(hash[lastindex]!=lastindex){
+            lastindex=hash[lastindex];
+            temp.push_back(arr[lastindex]);
         }
-        while(maxIndex != -1) { //push the subset element one by one
-            sol.push_back(nums[maxIndex]);
-            maxIndex = parent[maxIndex];
-        }
-        return sol;
-    }};
+        return temp;
+    }
+};
