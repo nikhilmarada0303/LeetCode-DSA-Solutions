@@ -18,7 +18,7 @@ public:
         }return dp[x][y];
       
     }
-    int longestPalinSubseq(string &s1) {
+    int longestPalinSubseq(string s1) {
         string s2=s1;
         reverse(s2.begin(),s2.end());
         return lcs(s1.size(),s1.size(),s1,s2);
