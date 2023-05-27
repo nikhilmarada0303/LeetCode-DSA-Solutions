@@ -10,7 +10,7 @@ class Solution{
     {
           vector<int>prev(y+1,0),curr(y+1,0);
           int ans=0;
-    
+
         for(int ind1=1;ind1<=x;ind1++){
             for(int ind2=1;ind2<=y;ind2++){
                  if(s1[ind1-1]==s2[ind2-1]){
