@@ -6,15 +6,18 @@ using namespace std;
 class Solution{
     public:
     long long maximumProfit(vector<long long>&prices, int n) {
-         vector<vector<long long>>dp(n+2,vector<long long>(2,0));
-        dp[n][0]=dp[n][1]=0;
+         vector<long long>front1(2,0);
+         vector<long long>front2(2,0);
+         vector<long long>curr(2,0);
         for(int ind=n-1;ind>=0;ind--){
             
-                   dp[ind][1]=max(-prices[ind]+dp[ind+1][0],0+dp[ind+1][1]);
+                 curr[1]=max(-prices[ind]+front1[0],0+front1[1]);
                 
-                dp[ind][0]=max(prices[ind]+dp[ind+2][1],0+dp[ind+1][0]);
+                    curr[0]=max(prices[ind]+front2[1],0+front1[0]);
+                front2=front1;
+                front1=curr;
         
-        }return dp[0][1];
+        }return curr[1];
     }
 };
 
