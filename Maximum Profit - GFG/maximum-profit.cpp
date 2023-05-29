@@ -9,23 +9,22 @@ using namespace std;
 
 class Solution {
   public:
+  int func(int ind,int transaction,int price[],int n,int k,vector<vector<int>>&dp){
+    if(transaction==2*k) return 0;
+    if(ind==n) return 0;
+    int profit=0;
+    if(dp[ind][transaction]!=-1) return dp[ind][transaction];
+    if(transaction%2==0){
+        profit=max(-price[ind]+func(ind+1,transaction+1,price,n,k,dp),func(ind+1,transaction,price,n,k,dp));
+    }else
+        profit=max(price[ind]+func(ind+1,transaction+1,price,n,k,dp),func(ind+1,transaction,price,n,k,dp));
+        return dp[ind][transaction]=profit;
+}
+
     int maxProfit(int k, int n, int price[]) {
-         vector<vector<int>>after(2,vector<int>(k+1,0));
-     vector<vector<int>>curr(2,vector<int>(k+1,0));
-     
-    // base cases are already zeros
-        //when cnt==0 ind and buy can be anything
-        //when ind==n cnt and buy can be anything 
-        for(int ind=n-1;ind>=0;ind--){
-            for(int buy=0;buy<=1;buy++){
-              for (int cnt = 1; cnt <= k; cnt++) {
-                if (buy)
-                  curr[buy][cnt] = max(-price[ind] + after[0][cnt],after[1][cnt]);
-                else
-                 curr[buy][cnt] = max(price[ind] + after[1][cnt - 1],after[0][cnt]);
-              }after=curr;
-            }
-        }return after[1][k];
+        vector<vector<int>>dp(n,vector<int>(2*k,-1));
+        return func(0,0,price,n,k,dp);
+    
     }
 };
 
