@@ -7,20 +7,19 @@ class Solution{
     public:
     
     long long maximumProfit(vector<long long>&prices, int n) {
-        vector<long long>ahead(2,0),curr(2,0);
-        ahead[0]=ahead[1]=0;
+        long long curr_buy,curr_notbuy,ahead_buy,ahead_notbuy;
+         ahead_notbuy=ahead_buy=0;
         
         for(int ind=n-1;ind>=0;ind--){
-            for(int buy=0;buy<=1;buy++){
-                    long long profit=0;
-                if(buy)
-                    profit=max(-prices[ind]+ahead[0]
-                    ,0+ahead[1]);
-                else
-                profit=max(prices[ind]+ahead[1],0+ahead[0]);
-            curr[buy]=profit;
-            }ahead=curr;
-        }return ahead[1];
+            
+            curr_buy=max(-prices[ind]+ahead_notbuy,0+ahead_buy);
+                
+            curr_notbuy=max(prices[ind]+ahead_buy,0+ahead_notbuy);
+                    
+            ahead_buy=curr_buy;
+            ahead_notbuy=curr_notbuy;
+            
+        }return ahead_buy;
     }
 };
 
