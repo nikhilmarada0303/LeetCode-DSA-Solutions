@@ -22,8 +22,18 @@ class Solution {
 }
 
     int maxProfit(int k, int n, int price[]) {
-        vector<vector<int>>dp(n,vector<int>(2*k,-1));
-        return func(0,0,price,n,k,dp);
+        vector<vector<int>>dp(n+1,vector<int>(2*k+1,0));
+        // base cases are inititated to zero
+        for(int ind=n-1;ind>=0;ind--){
+            for(int transaction=(2*k)-1;transaction>=0;transaction--){
+                int profit=0;
+                if(transaction%2==0)
+                profit=max(-price[ind]+dp[ind+1][transaction+1],dp[ind+1][transaction]);
+                else
+                  profit=max(price[ind]+dp[ind+1][transaction+1],dp[ind+1][transaction]);
+                  dp[ind][transaction]=profit;
+            }
+        }return dp[0][0];
     
     }
 };
