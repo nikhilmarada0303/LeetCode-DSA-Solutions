@@ -1,12 +1,13 @@
 class Solution {
 public:
-
+    int findWays(int n, vector<int> &dp)
+    {
+        if (n <= 2) return n;
+        if (dp[n] != -1) return dp[n];//already solved subproblems
+        return dp[n]=findWays(n - 1, dp) + findWays(n - 2, dp); //store the result of subproblem in dp array
+    }
     int climbStairs(int n) {
-      vector<int>dp(n+2,0);
-       dp[0]=1;
-       dp[1]=1;
-       for(int i=2;i<=n;i++){
-           dp[i]=dp[i-1]+dp[i-2];
-       }return dp[n];
+        vector<int>dp(n+1,-1); //fill all values with -1
+        return findWays(n,dp);
     }
 };
