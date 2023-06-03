@@ -30,9 +30,8 @@ class Solution {
         int cnt=0;
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                cnt++;
                 dfs(i,adjls,vis);
-                
+                cnt++;
             }
         }return cnt;
     }
