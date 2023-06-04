@@ -5,21 +5,14 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
     private:
-    bool detectCycle(int src,vector<int> adj[],int vis[]){
-        vis[src]=1;
-        queue<pair<int,int>>q;
-        q.push({src,-1});
-        while(!q.empty()){
-            int node=q.front().first;
-            int parent=q.front().second;
-            q.pop();
-            for(auto adjacentNode:adj[node]){
-                if(!vis[adjacentNode]){
-                    vis[adjacentNode]=1;
-                    q.push({adjacentNode,node});
-                }else if(parent!=adjacentNode)
+    bool dfs(int node,int parent,vector<int>adj[],int vis[]){
+        vis[node]=1;
+        for(auto adjacentNode:adj[node]){
+            if(!vis[adjacentNode]){
+                if(dfs(adjacentNode,node,adj,vis)) 
                     return true;
-            }
+            }else if(parent!=adjacentNode)
+                return true;
         }return false;
     }
   public:
@@ -28,11 +21,11 @@ class Solution {
         int vis[V]={0};
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(detectCycle(i,adj,vis))
-                return true;
+                if(dfs(i,-1,adj,vis))
+                    return true;
             }
         }return false;
-     }
+    }
 };
 
 //{ Driver Code Starts.
