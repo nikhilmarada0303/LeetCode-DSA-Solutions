@@ -33,7 +33,7 @@ public:
             }
         }for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(vis[i][j]==0 && grid[i][j]==1)
+                if(vis[i][j]!=2 && grid[i][j]==1)
                     return -1;
             }
         }return tp;
