@@ -26,7 +26,8 @@ class Solution {
     }
 public:
 	bool isBipartite(int V, vector<int>adj[]){
-	    // Code here
+	    // initial all colors are -1
+	    // two colors are 0,1
 	     vector<int>color(V,-1);
         for(int i=0;i<V;i++){
             if(color[i]==-1){
