@@ -4,6 +4,7 @@ public:
         int n=grid.size();
         int m=grid[0].size();
         int vis[n][m];
+        int cntFresh=0;
         // {{r,c},time}
         queue<pair<pair<int,int>,int>>q;
         for(int i=0;i<n;i++){
@@ -13,10 +14,13 @@ public:
                     vis[i][j]=2;
                 }else
                     vis[i][j]=0;
+                if(grid[i][j]==1)
+                    cntFresh++;
             }
         }int delRow[]={-1,0,1,0};
         int delCol[]={0,1,0,-1};
         int tp=0;
+        int cnt=0;
         while(!q.empty()){
             int row=q.front().first.first;
             int col=q.front().first.second;
@@ -29,14 +33,12 @@ public:
                 if(newRow>=0 && newRow<n && newCol>=0 && newCol<m && grid[newRow][newCol]==1 && vis[newRow][newCol]==0){
                     vis[newRow][newCol]=2;
                     q.push({{newRow,newCol},time+1});
+                    cnt++;
                 }
             }
-        }for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(vis[i][j]!=2 && grid[i][j]==1)
-                    return -1;
-            }
-        }return tp;
+        }
+        if(cnt!=cntFresh) return -1;
+        return tp;
         
     }
 };
