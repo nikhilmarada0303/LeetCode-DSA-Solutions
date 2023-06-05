@@ -28,6 +28,7 @@ class Solution {
         }return false;
     }*/
     public:
+    // topo b
      bool isCyclic(int V, vector<int> adj[]) {
           vector<int>in_degree(V,0);
 	    for(int i=0;i<V;i++){
