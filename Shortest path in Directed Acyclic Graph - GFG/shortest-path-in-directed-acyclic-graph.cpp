@@ -33,18 +33,20 @@ class Solution {
                 dfs(i,adj,vis,st);
         }
         vector<int>dist(N,1e9);
-        dist[0]=0;
+        dist[0]=0;  //given source is 0 ,if source is 6 then dist[6]=0;
+        // traverse in the stack
         while(!st.empty()){
             int node=st.top();
             st.pop();
             
             for(auto it:adj[node]){
                 int v=it.first;
-                int wt=it.second;
+                int wt=it.second;      // relax the node
                 if(dist[node]+wt<dist[v])
                     dist[v]=dist[node]+wt;
             }
         }
+        // if there is no way to that node ,return -1
          for(int i=0;i<N;i++){
             if(dist[i]==1e9)
                 dist[i]=-1;
