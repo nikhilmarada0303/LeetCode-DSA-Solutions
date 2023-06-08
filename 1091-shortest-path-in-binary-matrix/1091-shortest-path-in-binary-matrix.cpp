@@ -1,41 +1,28 @@
 class Solution {
 public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
-      int n = grid.size();
-    if (grid[0][0] == 1 || grid[n-1][n-1] == 1)
-        return -1;
-
-    vector<pair<int, int>> directions = {
-        {-1, 0}, {1, 0}, {0, -1}, {0, 1},
-        {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
-    };
-
-    vector<vector<int>> distance(n, vector<int>(n, INT_MAX));
-    distance[0][0] = 1;
-
-    queue<pair<int, int>> q;
-    q.push({0, 0});
-
-    while (!q.empty()) {
-        int x = q.front().first;
-        int y = q.front().second;
-        q.pop();
-
-        if (x == n - 1 && y == n - 1)
-            return distance[x][y];
-
-        for (const auto& dir : directions) {
-            int nx = x + dir.first;
-            int ny = y + dir.second;
-
-            if (nx >= 0 && nx < n && ny >= 0 && ny < n && grid[nx][ny] == 0 && distance[nx][ny] == INT_MAX) {
-                q.push({nx, ny});
-                distance[nx][ny] = distance[x][y] + 1;
+    int n=grid.size();
+        if(grid[0][0]==1 || grid[n-1][n-1]==1) return -1;
+        queue<pair<int,pair<int,int>>>q;
+        vector<vector<int>>dist(n,vector<int>(n,1e9));
+        dist[0][0]=1;
+        q.push({1,{0,0}});
+        while(!q.empty()){
+            int distance=q.front().first;
+            int row=q.front().second.first;
+            int col=q.front().second.second;
+            q.pop();
+            if(row==n-1 && col==n-1) return distance;
+            for(int i=-1;i<=1;i++){
+                for(int j=-1;j<=1;j++){
+                    int n_row=row+i;
+                    int n_col=col+j;
+                    if(n_row>=0 && n_row<n && n_col>=0 && n_col<n && grid[n_row][n_col]==0 && dist[n_row][n_col]==1e9){
+                        dist[n_row][n_col]=1+distance;
+                        q.push({dist[n_row][n_col],{n_row,n_col}});
+                    }
+                }
             }
-        }
-    }
-
-    return -1;
-
+        }return -1;
     }
 };
