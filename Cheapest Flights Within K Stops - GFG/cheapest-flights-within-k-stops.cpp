@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int CheapestFLight(int n, vector<vector<int>>& flights, int src, int dst, int k)  {
+    int CheapestFLight(int n, vector<vector<int>>& flights, int src, int dst, int K)  {
         /*vector<pair<int,int>>adj[n];
         for(int i=0;i<flights.size();i++){
             int u=flights[i][0];
@@ -29,41 +29,44 @@ class Solution {
             for(auto it:adj[node]){
                 int adj_node=it.first;
                 int flight_cost=it.second;
-                if(flight_cost+cost<dist[adj_node] && stops<=K){
+                if(flight_cost+cost<dist[adj_node]){
                     dist[adj_node]=flight_cost+cost;
                     pq.push({dist[adj_node],{adj_node,stops+1}});
                 }
             }
         }
-        return -1};*/
-         vector<vector<pair<int,int>>> adj(n);
-        for(auto &v:flights)adj[v[0]].push_back({v[1],v[2]});
-        queue<pair<int,pair<int,int>>> q;
+        return -1;}*/
+        vector<pair<int,int>>adj[n];
+        for(int i=0;i<flights.size();i++){
+            int u=flights[i][0];
+            int v=flights[i][1];
+            int wt=flights[i][2];
+            adj[u].push_back({v,wt});
+        }
+        vector<int>dist(n,1e9);
+        //{stops,{node,distance}}
+        queue<pair<int,pair<int,int>>>q;
+        dist[src]=0;
         q.push({0,{src,0}});
-        vector<int> dis(n,1e9);
-        dis[src]=0;
-        while(!q.empty())
-        {
+        while(!q.empty()){
             auto it=q.front();
-            q.pop();
-            int stops=it.first;
             int node=it.second.first;
             int cost=it.second.second;
-            if(stops>k) continue;
-            for(auto &p:adj[node])
-            {
-                int adjNode=p.first;
-                int wt=p.second;
-                if(cost+wt<dis[adjNode])
-                {
-                    dis[adjNode]=cost+wt;
-                    q.push({stops+1,{adjNode,dis[adjNode]}});
+            int stops=it.first;
+            q.pop();
+            if(stops>K) continue;
+            for(auto it:adj[node]){
+                int adj_node=it.first;
+                int flight_cost=it.second;
+                if(flight_cost+cost<dist[adj_node]){
+                    dist[adj_node]=flight_cost+cost;
+                    q.push({stops+1,{adj_node,dist[adj_node]}});
                 }
             }
         }
-        if(dis[dst]==1e9) return -1;
-        return dis[dst];
-    }
+        if(dist[dst]==1e9) return -1;
+        return dist[dst];
+        }
     
 };
 
