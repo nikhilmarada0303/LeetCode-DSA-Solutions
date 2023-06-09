@@ -8,7 +8,7 @@ public:
         int mid=(l+h)/2;
          if(mid<letters.size()-1 && letters[mid]<= target && letters[mid+1]>target)   
                 return letters[mid+1];
-         if((letters[mid]-'a')<=(target-'a'))
+         if((letters[mid])<=(target))
              l=mid+1;
           else
            h=mid-1;
