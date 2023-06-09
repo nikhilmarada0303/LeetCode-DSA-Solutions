@@ -8,7 +8,7 @@ using namespace std;
 class Solution {
   public:
     int countPaths(int n, vector<vector<int>>& roads) {
-        vector<pair<int,int>>adj[n];
+      vector<pair<int,int>>adj[n];
         for(int i=0;i<roads.size();i++){
             int u=roads[i][0];
             int v=roads[i][1];
@@ -18,7 +18,7 @@ class Solution {
         }
         int destination=n-1;
         //{time,node}
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>q;
+        priority_queue<pair<long,long>,vector<pair<long,long>>,greater<pair<long,long>>>q;
         vector<long long>dist(n,1e18);
         vector<long long>ways(n,0);
         ways[0]=1;
