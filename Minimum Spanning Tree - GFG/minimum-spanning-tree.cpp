@@ -10,7 +10,7 @@ class Solution
     int spanningTree(int V, vector<vector<int>> adj[])
     {
         int sum=0;
-        
+        vector<pair<int,int>>mst;
         vector<int>vis(V,0);
         // {weight,{node,parent}}
         priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
@@ -21,10 +21,12 @@ class Solution
             int parent=it.second.second;
             int wt=it.first;
             pq.pop();
-            if(vis[node]) continue;
-                vis[node]=1;
-                sum+=wt;
             
+            if(vis[node]) continue;
+            
+            vis[node]=1;
+            sum+=wt;
+            mst.push_back({node,parent});
             for(auto it:adj[node]){
                 int n_wt=it[1];
                 int n_node=it[0];
