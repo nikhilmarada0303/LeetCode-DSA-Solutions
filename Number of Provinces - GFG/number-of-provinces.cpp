@@ -6,7 +6,7 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
-class Solution {
+/*class Solution {
     private:
     void dfs(int node,vector<int>adjls[],int vis[]){
         vis[node]=1;
@@ -35,7 +35,74 @@ class Solution {
             }
         }return cnt;
     }
+};*/
+
+class disjointSet{
+    public:
+   vector<int>size,parent;  
+    disjointSet(int n){
+        size.resize(n+1,1);
+        parent.resize(n+1);
+        for(int i=1;i<=n;i++){
+            parent[i]=i;
+        }
+    }
+    int findParent(int node){
+        if(node==parent[node]) return node;
+        return parent[node]=findParent(parent[node]);
+    }
+    void unionBySize(int u,int v){
+        int ult_u=findParent(u);
+        int ult_v=findParent(v);
+        if(size[ult_u]<size[ult_v]){
+            parent[ult_u]=ult_v;
+            size[ult_v]+=size[ult_u];
+        }
+        else{
+             parent[ult_v]=ult_u;
+            size[ult_u]+=size[ult_v];
+        }
+    }
 };
+
+class Solution{
+    public:
+     int numProvinces(vector<vector<int>> adj, int V) {
+         disjointSet ds(V);
+      for(int i=0;i<V;i++){
+          for(int j=0;j<V;j++){
+              if(adj[i][j]==1)
+                ds.unionBySize(i,j);
+          }
+      }
+      int cnt=0;
+      // check for number of diff parent nodes
+      for(int i=0;i<V;i++){
+          if(ds.parent[i]==i)
+            cnt++;
+      }
+      return cnt;  
+     }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //{ Driver Code Starts.
 
