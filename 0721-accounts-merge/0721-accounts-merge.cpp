@@ -58,7 +58,7 @@ public:
             for(auto it:mergeMail[i]){
                 temp.push_back(it);
             }ans.push_back(temp);
-        } 
+        }sort(ans.begin(), ans.end(), greater<vector<string>>()); 
         return ans;
     }
 };
