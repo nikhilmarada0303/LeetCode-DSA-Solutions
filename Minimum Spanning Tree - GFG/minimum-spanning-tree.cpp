@@ -71,6 +71,7 @@ class Solution
         }return sum;*/
         // krushkal's algo  
         vector<pair<int,pair<int,int>>> edges;          //{wt,{u,v}}
+        // O(n+m)
         for(int i=0;i<V;i++){
             for(auto it:adj[i]){
                 int wt=it[1];
@@ -79,9 +80,11 @@ class Solution
                 edges.push_back({wt,{node,adj_node}});
             }
         }
+        // mlog(m)
         sort(edges.begin(),edges.end());
          disjointSet ds(V);
         int mstWt=0;
+        // O(m*4*alpha*2)
         for(auto it:edges){
             int wt=it.first;
             int u=it.second.first;
