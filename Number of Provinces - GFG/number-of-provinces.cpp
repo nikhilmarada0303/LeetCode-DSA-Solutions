@@ -69,14 +69,17 @@ class Solution{
     public:
      int numProvinces(vector<vector<int>> adj, int V) {
          disjointSet ds(V);
+         //n^2
       for(int i=0;i<V;i++){
           for(int j=0;j<V;j++){
               if(adj[i][j]==1)
+              //4alpha=linear
                 ds.unionBySize(i,j);
           }
       }
       int cnt=0;
       // check for number of diff parent nodes
+      //O(v)
       for(int i=0;i<V;i++){
           if(ds.parent[i]==i)
             cnt++;
