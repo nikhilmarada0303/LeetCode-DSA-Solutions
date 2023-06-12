@@ -13,15 +13,15 @@ public:
         pq.push({grid[0][0],{0,0}});
         int drow[4]={-1,0,1,0};
         int dcol[4]={0,1,0,-1};
-        int max_time=0;
+        int min_time=0;
         while(!pq.empty()){
             int depth=pq.top().first;
             int row=pq.top().second.first;
             int col=pq.top().second.second;
             pq.pop();
             vis[row][col]=1;
-            max_time=max(max_time,depth);
-            if(row==n-1 && col==n-1) return max_time;
+            min_time=max(min_time,depth);
+            if(row==n-1 && col==n-1) return min_time;
             for(int i=0;i<4;i++){
                 int n_row=row+drow[i];
                 int n_col=col+dcol[i];
@@ -29,6 +29,6 @@ public:
                     pq.push({grid[n_row][n_col],{n_row,n_col}});
                 }
             }
-        }return max_time;
+        }return min_time;
     }
 };
