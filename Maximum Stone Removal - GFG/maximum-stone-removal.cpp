@@ -55,7 +55,7 @@ class Solution {
         }
         int compos=0;
         for(int i=0;i<ds.parent.size();i++){
-            if(ds.findParent(i)==i && ds.size[i]>1) compos++;
+            if(ds.findParent(i)==i && ds.size[i]>1) compos++;     // atleast one stone should be connected
         }return n-compos;
     }
 };
