@@ -50,7 +50,7 @@ class Solution {
         int cnt=0;
         int drow[4]={-1,0,1,0};
         int dcol[4]={0,1,0,-1};
-        // step1
+        // step1   store all diff compos 
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 int row=i;
@@ -58,8 +58,8 @@ class Solution {
                 if(grid[i][j]==1){
                     cnt++;
                     for(int k=0;k<4;k++){
-                        int n_row=drow[k]+i;
-                        int n_col=dcol[k]+j;
+                        int n_row=drow[k]+row;
+                        int n_col=dcol[k]+col;
                         if(isValid(n_row,n_col,n) && grid[n_row][n_col]==1){
                             int adj_node_no=n*n_row+n_col;
                             int node_no=n*row+col;
@@ -81,7 +81,8 @@ class Solution {
                         int n_row=drow[k]+i;
                         int n_col=dcol[k]+j;
                             if(isValid(n_row,n_col,n) && grid[n_row][n_col]==1){
-                            components.insert(ds.findParent(n_row*n+n_col));
+                                // some edge cases will fail ,will added twice
+                            components.insert(ds.findParent(n_row*n+n_col));           
                             }
                       }
                 }for(auto it:components){
@@ -89,6 +90,7 @@ class Solution {
                 }maxi=max(maxi,sizeTotal+1);
             }
         }
+        // if all are one's
         if(cnt==n*n) return n*n;
         return maxi;
     }
