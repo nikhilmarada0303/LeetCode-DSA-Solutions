@@ -5,56 +5,47 @@ using namespace std;
 // } Driver Code Ends
 class Solution
 {
-  private:
-    void dfs(int node, vector<int> &vis, vector<vector<int>>&adj,
-             stack<int> &st) {
-        vis[node] = 1;
-        for (auto it : adj[node]) {
-            if (!vis[it]) {
-                dfs(it, vis, adj, st);
+    private:
+        void dfs(int node,vector<vector<int>>& adj,vector<int>& vis,stack<int>&st){
+            vis[node]=1;
+            for(auto it:adj[node]){
+                if(!vis[it])
+                dfs(it,adj,vis,st);
+            }
+            st.push(node);
+        }
+        void dfs2(int node,vector<int>adjT[],vector<int>&vis){
+            vis[node]=1;
+            for(auto it:adjT[node]){
+                if(!vis[it])
+                    dfs2(it,adjT,vis);
             }
         }
-
-        st.push(node);
-    }
-private:
-    void dfs3(int node, vector<int> &vis, vector<int> adjT[]) {
-        vis[node] = 1;
-        for (auto it : adjT[node]) {
-            if (!vis[it]) {
-                dfs3(it, vis, adjT);
-            }
-        }
-    }
 	public:
 	//Function to find number of strongly connected components in the graph.
-    int kosaraju(int V, vector<vector<int> >& adj)
+    int kosaraju(int V, vector<vector<int>>& adj)
     {
-       
-       vector<int> vis(V, 0);
-        stack<int> st;
-        for (int i = 0; i < V; i++) {
-            if (!vis[i]) {
-                dfs(i, vis, adj, st);
+        stack<int>st;
+        vector<int>vis(V,0);
+        for(int i=0;i<V;i++){                    // step 1 (store according to finishing time in stack)
+            if(!vis[i]){
+                dfs(i,adj,vis,st);
             }
         }
-
-        vector<int> adjT[V];
-        for (int i = 0; i < V; i++) {
-            vis[i] = 0;
-            for (auto it : adj[i]) {
-                // i -> it
-                // it -> i
+        vector<int>adjT[V];
+        for(int i=0;i<V;i++){                    // step2 reverse the graph
+           vis[i]=0;
+            for(auto it:adj[i])
                 adjT[it].push_back(i);
-            }
         }
-        int scc = 0;
-        while (!st.empty()) {
-            int node = st.top();
+        int scc=0;
+
+        while(!st.empty()){
+            int node=st.top();                   //step 3 cnt scc
             st.pop();
-            if (!vis[node]) {
+            if(!vis[node]){
                 scc++;
-                dfs3(node, vis, adjT);
+                dfs2(node,adjT,vis);
             }
         }
         return scc;
