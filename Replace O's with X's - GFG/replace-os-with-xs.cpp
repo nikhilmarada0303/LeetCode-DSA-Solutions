@@ -31,7 +31,7 @@ public:
             //first row
             if(!vis[0][j] && board[0][j]=='O')
                dfs(0,j,board,vis);
-            //first col
+            //last row
             if(!vis[n-1][j] && board[n-1][j]=='O')
                 dfs(n-1,j,board,vis);
         }//traverse first col and last col
