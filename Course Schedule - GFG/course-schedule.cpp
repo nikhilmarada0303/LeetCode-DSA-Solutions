@@ -12,7 +12,7 @@ class Solution
     {
          vector<int>adj[V];
 	   for(auto it:prerequisites){
-	       adj[it[1]].push_back(it[0]);
+	       adj[it[1]].push_back(it[0]);                 //reverse the graph
 	   }
 	    vector<int>in_degree(V,0);
 	    for(int i=0;i<V;i++){
