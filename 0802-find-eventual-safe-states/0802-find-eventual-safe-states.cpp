@@ -20,7 +20,6 @@ public:
         vector<int>check(V,0);
         vector<int>vis(V,0);
         vector<int>path_vis(V,0);
-        
         for(int i=0;i<V;i++){
             if(!vis[i]){
                 dfs(i,adj,vis,path_vis,check);
