@@ -44,7 +44,7 @@ class Solution
             int weight=it[1];
             int adj_node=it[0];
             if(weight+node_distance<dist[adj_node]){
-                
+                if(dist[adj_node]!=1e9)                   
                     st.erase({dist[adj_node],adj_node});
                 dist[adj_node]=weight+node_distance;
                 st.insert({dist[adj_node],adj_node});
