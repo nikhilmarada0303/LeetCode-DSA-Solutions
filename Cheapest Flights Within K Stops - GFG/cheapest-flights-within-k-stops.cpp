@@ -58,7 +58,7 @@ class Solution {
             for(auto it:adj[node]){
                 int adj_node=it.first;
                 int flight_cost=it.second;
-                if(flight_cost+cost<dist[adj_node]){
+                if(flight_cost+cost<dist[adj_node] && stops<=K){
                     dist[adj_node]=flight_cost+cost;
                     q.push({stops+1,{adj_node,dist[adj_node]}});
                 }
