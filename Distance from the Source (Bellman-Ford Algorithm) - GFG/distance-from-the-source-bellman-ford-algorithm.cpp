@@ -23,7 +23,7 @@ class Solution {
                 int v=it[1];
                 int wt=it[2];
                 //relax
-                if(wt+dist[u]<dist[v])
+                if(dist[u]!=1e8 && wt+dist[u]<dist[v])
                     dist[v]=wt+dist[u];
             }
         }
