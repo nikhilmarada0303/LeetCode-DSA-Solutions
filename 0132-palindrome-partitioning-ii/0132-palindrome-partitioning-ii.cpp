@@ -1,6 +1,7 @@
 class Solution {
 public:
-   bool ispalindrome(int i,int j,string &s){
+   
+     bool ispalindrome(int i,int j,string &s){
         if(i>=j) return true;
         if(s[i]!=s[j]) return false;
         return ispalindrome(i+1,j-1,s);
