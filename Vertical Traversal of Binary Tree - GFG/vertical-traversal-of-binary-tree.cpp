@@ -100,7 +100,6 @@ void printInorder(Node* root)
 class Solution
 {
     public:
-    //Function to find the vertical order traversal of Binary Tree.
     vector<int> verticalOrder(Node *root)
     {
         queue<pair<Node*,pair<int,int>>>q;
