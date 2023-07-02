@@ -20,7 +20,6 @@ class Solution {
      if(isLeaf(node)){
           temp=temp+to_string(node->val);
          ans.push_back(temp);
-         return ;
      }
      temp=temp+to_string(node->val)+"->";
      func(node->left,ans,temp);
