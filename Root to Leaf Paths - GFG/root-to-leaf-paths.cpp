@@ -133,15 +133,17 @@ struct Node
      if(!node->left && !node->right) return true;
      return false;
  }
- void func(Node* node,vector<vector<int>>&ans,vector<int>temp){
+ void func(Node* node,vector<vector<int>>&ans,vector<int>&temp){
      if(node==NULL ) return ;
      temp.push_back(node->data);
      if(isLeaf(node)){
          ans.push_back(temp);
+         temp.pop_back();
          return ;
      }
      func(node->left,ans,temp);
      func(node->right,ans,temp);
+     temp.pop_back();
  }
 vector<vector<int>> Paths(Node* root)
 {
@@ -150,5 +152,4 @@ vector<vector<int>> Paths(Node* root)
     if(root==NULL) return ans;
     func(root,ans,temp);
     return ans;
-    
 }
