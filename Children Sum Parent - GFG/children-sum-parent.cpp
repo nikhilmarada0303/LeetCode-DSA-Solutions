@@ -104,26 +104,21 @@ struct Node
 class Solution{
     public:
     bool isChildrenSumParent(Node* node) {
-    // Base case: an empty tree or a leaf node
+    
     if (node == nullptr || (node->left == nullptr && node->right == nullptr)) {
         return true;
     }
 
     int sum = 0;
-    if (node->left != nullptr) {
-        sum += node->left->data;
-    }
-    if (node->right != nullptr) {
-        sum += node->right->data;
-    }
+    if(node->left) sum+=node->left->data;
+    if(node->right) sum+=node->right->data;
+    if(!isChildrenSumParent(node->left) || !isChildrenSumParent(node->right)) return false;
+    if(node->data!=sum) return false;
 
-    // Check if the current node satisfies the property
-    if (node->data == sum && isChildrenSumParent(node->left) && isChildrenSumParent(node->right)) {
-        return true;
+   
+    return true;
+        
     }
-
-    return false;
-}
     //Function to check whether all nodes of a tree have the value 
     //equal to the sum of their child nodes.
     int isSumProperty(Node *root)
