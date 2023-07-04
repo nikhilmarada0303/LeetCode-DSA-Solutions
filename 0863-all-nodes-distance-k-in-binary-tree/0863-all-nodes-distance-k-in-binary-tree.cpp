@@ -12,14 +12,14 @@ class Solution {
      void parent_check(TreeNode* node,unordered_map<TreeNode*,TreeNode*>&parent_track){
          if(node==NULL) return ;
          if(node->left){
-            
+            parent_track[node->left]=node;
              parent_check(node->left,parent_track);
-              parent_track[node->left]=node;
+              
          }
          if(node->right){
-            
+            parent_track[node->right]=node;
              parent_check(node->right,parent_track);
-              parent_track[node->right]=node;
+              
          }
      }
 public:
