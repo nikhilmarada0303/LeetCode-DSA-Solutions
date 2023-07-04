@@ -114,9 +114,9 @@ class Solution
          if(node==NULL) return NULL;
          if(node->data==target) return node;
          Node* left=getNode(node->left,target);
-         if(left) return left;
+
          Node* right=getNode(node->right,target);
-         
+         if(left) return left;
          if(right) return right;
          return NULL;
      }
