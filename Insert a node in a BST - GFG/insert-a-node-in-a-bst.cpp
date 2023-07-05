@@ -129,7 +129,6 @@ Node* insert(Node* root, int val) {
                 }
             }
             else{
-                if(curr->data==val) break;
                 if(curr->left!=NULL)
                     curr=curr->left;
                 else{
