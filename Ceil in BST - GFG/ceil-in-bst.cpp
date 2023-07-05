@@ -104,8 +104,8 @@ int findCeil(Node* root, int input) {
     int ceil=-1;
     while(root){
         if(root->data==input){
-            ceil=root->data;
-            return ceil;
+            
+            return root->data;
         }
         if(root->data<input) root=root->right;
         else{
