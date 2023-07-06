@@ -25,7 +25,7 @@ public:
         int h=v.size()-1;
         while(l<h){
             if(v[l]+v[h]==k) return true;
-            else if(v[l]+v[h]<=k) l++;
+            else if(v[l]+v[h]<k) l++;
             else h--;
         }
         return false;
