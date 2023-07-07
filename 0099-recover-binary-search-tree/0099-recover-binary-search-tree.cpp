@@ -42,7 +42,7 @@ class Solution {
     void Inorder(TreeNode* node){
         if(node==NULL) return ;
         Inorder(node->left);
-        if (prev->val>node->val){
+        if (prev!=NULL && prev->val>node->val){
             if(first==NULL){
                 first=prev;
                 middle=node;
