@@ -9,7 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+/*class Solution {
     private:
     void func(TreeNode* node,vector<int>&v){
         if(node==NULL) return ;
@@ -31,5 +31,32 @@ public:
         sort(v.begin(),v.end());
         int i=0;
         checkInorder(root,v,i);
+    }
+};*/
+class Solution {
+    private:
+    TreeNode* first;
+    TreeNode* middle;
+    TreeNode* last;
+    TreeNode* prev;
+    void Inorder(TreeNode* node){
+        if(node==NULL) return ;
+        Inorder(node->left);
+        if (prev->val>node->val){
+            if(first==NULL){
+                first=prev;
+                middle=node;
+            }else last=node;
+        }
+        prev=node;
+        Inorder(node->right);
+    }
+public:
+    void recoverTree(TreeNode* root) {
+        first=NULL;last=NULL;middle=NULL;
+        prev=new TreeNode(INT_MIN);
+        Inorder(root);
+        if(first && last) swap(first->val,last->val);
+        else if(first,middle) swap(first->val,middle->val);
     }
 };
