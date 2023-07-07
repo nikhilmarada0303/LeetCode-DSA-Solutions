@@ -52,8 +52,8 @@ class BSTiterator{
     }
     private:
     void push(TreeNode* node){
-        for(;node!=NULL;){
-             st.push(node);
+        while(node){
+            st.push(node);
             if(!reverse) node=node->left;
             else node=node->right;
         }
