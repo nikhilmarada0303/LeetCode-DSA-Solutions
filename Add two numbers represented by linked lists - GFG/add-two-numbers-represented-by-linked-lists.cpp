@@ -61,21 +61,16 @@ class Solution
 {
     private:
     Node* reverse(Node* head){
-         Node* dummy=NULL;
+        Node* dummy=NULL;
         while(head){
-            Node* nxt=head->next;
+            Node* new_node=head->next;
             head->next=dummy;
             dummy=head;
-            head=nxt;
+            head=new_node;
         }return dummy;
     }
-    public:
-    
-    struct Node* addTwoLists(struct Node* l1, struct Node* l2)
-    {
-       l1=reverse(l1);
-       l2=reverse(l2);
-         Node* dummy=new Node(0);
+    Node* add(Node* l1,Node* l2){
+            Node* dummy=new Node(0);
        Node* temp=dummy;
         int carry=0;
         while(l1!=NULL || l2!=NULL || carry!=NULL){
@@ -93,9 +88,16 @@ class Solution
             Node* new_node=new Node(sum%10);
             temp->next=new_node;
             temp=new_node;
-        }
-        Node* ans=dummy->next;
-        delete dummy;
+        }return dummy->next;
+    }
+    public:
+    
+    struct Node* addTwoLists(struct Node* l1, struct Node* l2)
+    {
+       l1=reverse(l1);
+       l2=reverse(l2);
+     
+        Node* ans=add(l1,l2);
         return reverse(ans);
     }
 };
