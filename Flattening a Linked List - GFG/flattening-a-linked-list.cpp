@@ -135,14 +135,6 @@ Node *flatten(Node *root)
    // l1-----l4  recursion
    root->next=flatten(root->next);
    root=mergeSort(root,root->next);
-   Node* p=root;
-   Node* res=new Node(0);
-   Node* temp=res;
-   while(p){
-       temp->next=p;
-       p=p->bottom;
-       temp=temp->next;
-   }
-   return res->next;
+  return root;
 }
 
