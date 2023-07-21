@@ -4,7 +4,7 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-   /* private:
+  private:
     bool dfs(int node,vector<int> adj[],int vis[],int path_vis[]){
         vis[node]=1;
         path_vis[node]=1;
@@ -26,34 +26,8 @@ class Solution {
                 if(dfs(i,adj,vis,path_vis)==true) return true;
             }
         }return false;
-    }*/
-    public:
-    // topo b
-     bool isCyclic(int V, vector<int> adj[]) {
-          vector<int>in_degree(V,0);
-	    for(int i=0;i<V;i++){
-	        for(auto it:adj[i])
-	            in_degree[it]++;
-	    }
-	    queue<int>q;
-	    for(int i=0;i<V;i++){
-	        if(in_degree[i]==0)
-	            q.push(i);
-	    }int cnt=0;
-	    while(!q.empty()){
-	        int node=q.front();
-	        q.pop();
-	        cnt++;
-	        for(auto it:adj[node]){
-	            in_degree[it]--;
-	            if(in_degree[it]==0)
-	                q.push(it);
-	        }
-	    }if(cnt==V) return false;
-	    return true;
-     }
-    
-    
+    }
+
 };
 
 //{ Driver Code Starts.
