@@ -3,7 +3,7 @@ class Solution {
       bool dfs(int node,vector<vector<int>>&adj, vector<int>&vis,vector<int>&path_vis,vector<int>&check){
         vis[node]=1;
         path_vis[node]=1;
-        for(auto it=adj[node].begin();it!=adj[node].end();it++){
+        for(auto it=adj[node].begin();it<adj[node].end();it++){
             if(!vis[*it]){
                 // if there is cycle ,it will return cycle and check will not be marked as 1 and it not a safe node 
                 if(dfs(*it,adj,vis,path_vis,check)==true) return true;
