@@ -4,15 +4,15 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-    //dfs 
-   /* private:
+    private:
     bool dfs(int node,int parent,vector<int>adj[],vector<int>&vis){
         vis[node]=1;
-        for(auto adjacentNode:adj[node]){
-            if(!vis[adjacentNode]){
-                if(dfs(adjacentNode,node,adj,vis))
+        for(auto adjacentnode:adj[node]){
+            if(!vis[adjacentnode]){
+                if(dfs(adjacentnode,node,adj,vis))
                     return true;
-            }else if(adjacentNode!=parent)
+            }
+            else if(parent!=adjacentnode)
                 return true;
         }return false;
     }
@@ -22,41 +22,11 @@ class Solution {
         vector<int>vis(V,0);
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(dfs(i,-1,adj,vis))
-                    return true;
-            }
-        }return false;
-    }*/
-    //bfs
-    private:
-    bool detectCycle(int src,vector<int> adj[],int vis[]){
-        vis[src]=1;
-        queue<pair<int,int>>q;
-        q.push({src,-1});
-        while(!q.empty()){
-            int node=q.front().first;
-            int parent=q.front().second;
-            q.pop();
-            for(auto adjacentNode:adj[node]){
-                if(!vis[adjacentNode]){
-                    vis[adjacentNode]=1;
-                    q.push({adjacentNode,node});
-                }else if(parent!=adjacentNode)
+                if(dfs(i,-1,adj,vis))   
                     return true;
             }
         }return false;
     }
-  public:
-    // Function to detect cycle in an undirected graph.
-    bool isCycle(int V, vector<int> adj[]) {
-        int vis[V]={0};
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
-                if(detectCycle(i,adj,vis))
-                return true;
-            }
-        }return false;
-     }
 };
 
 //{ Driver Code Starts.
