@@ -1,34 +1,34 @@
 class Solution {
 public:
-    int networkDelayTime(vector<vector<int>>& flights, int n, int k) {
-         vector<pair<int,int>>adj[n+1];
-        for(int i=0;i<flights.size();i++){
-            int u=flights[i][0];
-            int v=flights[i][1];
-            int wt=flights[i][2];
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        vector<pair<int,int>>adj[n+1];
+        for(auto it:times){
+            int u=it[0];
+            int v=it[1];
+            int wt=it[2];
             adj[u].push_back({v,wt});
         }
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         vector<int>dist(n+1,1e9);
         dist[k]=0;
-        //cost,node
-        priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> q; 
-        q.push({0,k});
-        while(!q.empty()){
-            int cost=q.top().first;
-            int node=q.top().second;
-            q.pop();
+        pq.push({0,k});
+        while(!pq.empty()){
+            int node=pq.top().second;
+            int dis=pq.top().first;
+            pq.pop();
+            
             for(auto it:adj[node]){
-                int adj_node=it.first;
+                int adjacentnode=it.first;
                 int weight=it.second;
-                if(weight+cost<dist[adj_node]){
-                    dist[adj_node]=weight+cost;
-                    q.push({dist[adj_node],adj_node});
+                if(weight+dis<dist[adjacentnode]){
+                    dist[adjacentnode]=weight+dis;
+                    pq.push({dist[adjacentnode],adjacentnode});
                 }
             }
-        }int maxi=0;
+        }int m=0;
         for(int i=1;i<=n;i++){
-                maxi=max(maxi,dist[i]);
-        }if(maxi==1e9 ) return -1;
-        return maxi;
+            m=max(m,dist[i]);
+            if(dist[i]==1e9) return -1;
+        }return m;
     }
 };
