@@ -5,9 +5,9 @@ public:
         int first=0;
 	for(int i=1;i<n;i++){
                   if (arr[first] != arr[i]) {
-                    arr[first+1]=arr[i];
                       first++;
-                    
+                    arr[first]=arr[i];
+                      
                   } 
         }return first+1;
     }
