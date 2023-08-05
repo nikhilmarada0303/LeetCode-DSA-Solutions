@@ -1,29 +1,31 @@
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
-      int i=0;
-      int j=nums.size()-1;
-      while(i<=j){
-          int mid=(i+j)/2;
-          if(nums[mid]==target)
-          return mid;
-          //left half is sorted 
-            if(nums[i]<=nums[mid]){
-                //target in left half
-                if(nums[i]<=target && target<=nums[mid])
-                j=mid-1;
-                //target in right half
-                else
-                i=mid+1;
-            }//right half is sorted
-            else{
-                //target in right half
-                if(nums[mid]<=target && target<=nums[j])
-                i=mid+1;
-                //target in left half
-                else
-                j=mid-1;
-            }
-      }return -1;
+    int search(vector<int>& arr, int k) {
+        int n=arr.size();
+        int rotate=0;
+    for(int i=1;i<n;i++){
+        if(arr[i-1]>arr[i]){
+            rotate=i;
+            break;}
+
     }
-  };
+
+    reverse(arr.begin(),arr.begin()+rotate);
+    reverse(arr.begin()+rotate,arr.end());
+    reverse(arr.begin(),arr.end());
+
+    int low=0;
+    int high=n-1;                           
+    int ans=-1;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]==k) return (mid+rotate)%n;
+        else if(arr[mid]>k)
+            high=mid-1;
+        else 
+            low=mid+1;
+    }
+    
+    return ans;
+    }
+};
