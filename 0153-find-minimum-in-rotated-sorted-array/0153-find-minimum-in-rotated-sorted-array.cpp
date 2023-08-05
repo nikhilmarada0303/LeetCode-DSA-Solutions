@@ -2,16 +2,19 @@ class Solution {
 public:
     int findMin(vector<int>& arr) {
         int n=arr.size();
-	int rotate=1;
-	for(int i=1;i<n;i++){
-		if(arr[i-1]>arr[i])
-			break;
-		rotate++;
-	}
-	reverse(arr.begin(),arr.begin()+rotate);
-	reverse(arr.begin()+rotate,arr.end());
-	reverse(arr.begin(),arr.end());
-
-	return arr[0];
+        int low=0;
+        int high=n-1;
+        int ans=INT_MAX;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[low]<=arr[mid]){           //left part is sorted
+                ans=min(ans,arr[low]);
+                low=mid+1;
+            }
+            else{                            //right part is sorted
+                ans=min(ans,arr[mid]);
+                high=mid-1;
+            }
+        }return ans;
     }
 };
