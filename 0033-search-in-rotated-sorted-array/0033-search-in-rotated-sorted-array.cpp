@@ -2,11 +2,11 @@ class Solution {
 public:
     int search(vector<int>& arr, int k) {
         int n=arr.size();
-        int rotate=0;
+        int rotate=1;
     for(int i=1;i<n;i++){
         if(arr[i-1]>arr[i]){
-            rotate=i;
             break;}
+        rotate++;
 
     }
 
