@@ -10,7 +10,7 @@ public:
     int minEatingSpeed(vector<int>& v, int h) {
     sort(v.begin(),v.end());
     long maxEatable=v[v.size()-1];
-    long low=1;
+    int low=1;
     long high=maxEatable;
     int ans=-1;
     while(low<=high){
@@ -21,7 +21,6 @@ public:
             high=mid-1;
         }
         else low=mid+1;
-
     }return ans;
     }
 };
