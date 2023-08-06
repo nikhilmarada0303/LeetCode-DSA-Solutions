@@ -12,6 +12,7 @@ public:
     long maxEatable=v[v.size()-1];
     int low=1;
     long high=maxEatable;
+        int n=v.size();
     int ans=-1;
     while(low<=high){
          long mid=(low+high)/2;
