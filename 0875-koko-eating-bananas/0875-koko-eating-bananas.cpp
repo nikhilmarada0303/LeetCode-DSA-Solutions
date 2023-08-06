@@ -14,7 +14,7 @@ public:
     long high=maxEatable;
     int ans=-1;
     while(low<=high){
-        long long mid=(low+high)/2;
+         long mid=(low+high)/2;
         long totalH=func(v,mid);
         if(totalH<=h){
             ans=mid;
