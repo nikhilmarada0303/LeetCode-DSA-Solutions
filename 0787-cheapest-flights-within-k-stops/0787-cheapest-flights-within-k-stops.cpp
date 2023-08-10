@@ -19,7 +19,7 @@ public:
             int cost=it.second.second;
             int stops=it.first;
             q.pop();
-            if(stops>K) continue;
+            if(stops>K) break;
             for(auto it:adj[node]){
                 int adj_node=it.first;
                 int flight_cost=it.second;
