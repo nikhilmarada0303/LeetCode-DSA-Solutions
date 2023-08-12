@@ -1,31 +1,29 @@
 class Solution {
 public:
-      void func(int ind, vector<int>& nums, set<vector<int>>& st, vector<int>& ans, vector<int>& vis) {
-        if (ind == nums.size()) {
-            st.insert(ans); 
+     void func(vector<int>&ds,vector<int>&vis,set<vector<int>>&st,vector<int>&nums){
+        if(ds.size()==nums.size()){
+            st.insert(ds);
             return;
         }
-        for (int i = 0; i < nums.size(); i++) {
-            if (!vis[i]) {
-                vis[i] = 1;
-                ans.push_back(nums[i]);
-                func(ind + 1, nums, st, ans, vis);
-                ans.pop_back(); 
-                vis[i] = 0;
+        for(int i=0;i<nums.size();i++){
+            if(!vis[i]){
+                vis[i]=1;
+                ds.push_back(nums[i]);
+                func(ds,vis,st,nums);
+                vis[i]=0;
+                ds.pop_back();
             }
-        }
+        }return;
     }
-    
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-       set<vector<int>> st;
-        vector<int> vis(nums.size(), 0);
-        vector<int> ans;
-        func(0, nums, st, ans, vis);
-        vector<vector<int>> f;
-        for (const auto& it : st) {
-            f.push_back(it);
-        }
-
-        return f;
+        vector<int>vis(nums.size(),0);
+        vector<int>ds;
+        set<vector<int>>st;
+        func(ds,vis,st,nums);
+        
+        vector<vector<int>>ans;
+        for(auto it:st)
+            ans.push_back(it);
+        return ans;
     }
 };
