@@ -8,12 +8,16 @@ public:
         
        for(auto p=mp.begin();p!=mp.end();)
 		{
+           cout<<p->first;
 			if(p->second>0)
 			{
-				for(int i=0;i<k;i++)
+                p->second--;
+                // cout<<p->first<<endl;
+				for(int i=1;i<k;i++)
 				{
 					if(mp[p->first+i]>0)
 					{
+                        // cout<<p->first+1;
 						mp[p->first+i]--;
 					}
 					else
