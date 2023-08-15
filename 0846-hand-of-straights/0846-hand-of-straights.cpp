@@ -8,7 +8,7 @@ public:
         
        for(auto p=mp.begin();p!=mp.end();)
 		{
-           cout<<p->first;
+           // cout<<p->first;
 			if(p->second>0)
 			{
                 p->second--;
