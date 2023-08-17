@@ -10,7 +10,18 @@ public:
         return dp[row][col]=left+right;
     }
     int uniquePaths(int m, int n) {
-        vector<vector<int>>dp(m,vector<int>(n,-1));
-        return func(m-1,n-1,dp);
+        vector<vector<int>>dp(m,vector<int>(n,0));
+        dp[0][0]=1;
+        for(int row=0;row<m;row++){
+            for(int col=0;col<n;col++){
+                if(row==0 && col==0) continue;
+                int left=0;int right=0;
+                if(col>0)
+                left=dp[row][col-1];
+                if(row>0)
+                 right=dp[row-1][col];
+                dp[row][col]=left+right;
+            }
+        }return dp[m-1][n-1];
     }
 };
