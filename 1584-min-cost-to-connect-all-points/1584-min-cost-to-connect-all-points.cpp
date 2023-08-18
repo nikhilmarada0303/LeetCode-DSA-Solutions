@@ -9,7 +9,7 @@ public:
                     if(i!=j){
                     int dist=abs(points[i][0]-points[j][0])+abs(points[j][1]-points[i][1]);
                     adj[i].push_back({j,dist});
-                     // adj[j].push_back({i,dist});
+                    // adj[j].push_back({i,dist});
                     } 
                 
             }
