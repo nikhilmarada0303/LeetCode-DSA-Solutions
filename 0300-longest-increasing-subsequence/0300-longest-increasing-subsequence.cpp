@@ -2,7 +2,7 @@ class Solution {
 public:
     int func(int ind,int prev_ind,vector<int>&nums,int n,vector<vector<int>>&dp){
         if(ind==n){
-            // if(nums[ind-1]<nums[ind])
+            // if(nums[ind-1]<=nums[ind])
             // return 1;
             // return 0;
             return 0;
