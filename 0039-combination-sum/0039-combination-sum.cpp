@@ -29,7 +29,7 @@ void func(int ind,int target,int n,vector<int>&ds,vector<vector<int>>&ans,vector
   }
 
         for(int i=ind;i<n;i++){
-		// if(i>ind && nums[i]==nums[i-1]) continue;
+		 if(i>ind && nums[i]==nums[i-1]) continue;
 		 if(target<nums[i]) break;
 		ds.push_back(nums[i]);
 		func(i,target-nums[i],n,ds,ans,nums);
