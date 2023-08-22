@@ -5,9 +5,9 @@ public:
         while(num>0){
             num=num-1;
             char c='A'+num%26;
-            s=s+c;
+            s=c+s;
             num=num/26;
-        }reverse(s.begin(),s.end());
+         }
         return s;
     }
 };
