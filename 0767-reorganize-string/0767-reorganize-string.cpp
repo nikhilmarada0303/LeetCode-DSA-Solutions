@@ -33,8 +33,9 @@ public:
         for(auto it:s)
             mp[it]++;
         priority_queue<pair<int,char>>pq;
-        for(auto it:mp)
+        for(auto it:mp){
             pq.push({it.second,it.first});
+            cout<<it.first;}
         string ans="";
         while(pq.size()>=2){
             auto it1=pq.top(); pq.pop();
