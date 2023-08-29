@@ -1,7 +1,7 @@
 class Solution {
 public:
     int func(int ind,int d,vector<int>&nums,vector<vector<int>>&dp){
-        if(d==0 && ind==nums.size()){
+        if(ind==nums.size()){
             if(d==0) return 0;
             return 1e9;
         }if(d<0) return 1e9;
