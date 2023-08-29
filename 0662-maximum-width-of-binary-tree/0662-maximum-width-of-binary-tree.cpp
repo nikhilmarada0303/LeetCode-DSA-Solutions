@@ -30,5 +30,6 @@ public:
                 if(node->right) q.push({node->right,curr_id*2+2});
             }ans=max(ans,last-first+1);
         }return ans;
+    
     }
 };
