@@ -100,10 +100,11 @@ struct Node
 class Solution
 {
     public:
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
     vector<int> topView(Node *root)
     {
-        // node,line
-        queue<pair<Node*,int>>q;
+         queue<pair<Node*,int>>q;
         //{line,node->val}
         map<int,int>mp;
         q.push({root,0});
