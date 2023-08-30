@@ -9,22 +9,22 @@
  */
 
 class Solution {
-    private:
-    TreeNode* func(TreeNode* node,int p,int q){
+    TreeNode* func(TreeNode* node,TreeNode* p,TreeNode* q){
         if(node==NULL) return NULL;
-        if(node->val<p && node->val<q) return func(node->right,p,q);
-        if(node->val>p && node->val>q) return func(node->left,p,q);
-        return node;    // this is condition for splitting
+        
+        if(node->val>p->val && node->val>q->val) return func(node->left,p,q);
+        if(node->val<p->val && node->val<q->val) return func(node->right,p,q);
+        return node;
     }
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(root==NULL || root==p || root==q) return root;
+//         if(root==NULL || root==p || root==q) return root;
         
-        TreeNode* left=lowestCommonAncestor(root->left,p,q);
-        TreeNode* right=lowestCommonAncestor(root->right,p,q);
-        if(left==NULL) return right;
-        if(right==NULL) return left;
-        else return root;
-        
+//         TreeNode* left=lowestCommonAncestor(root->left,p,q);
+//         TreeNode* right=lowestCommonAncestor(root->right,p,q);
+//         if(left==NULL) return right;
+//         if(right==NULL) return left;
+//         else return root;
+        return func(root,p,q);
     }
 };
