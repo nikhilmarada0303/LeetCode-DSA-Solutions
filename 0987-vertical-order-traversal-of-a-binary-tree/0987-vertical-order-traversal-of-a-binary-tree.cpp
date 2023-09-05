@@ -54,7 +54,9 @@ public:
          for(auto p:mp){
             vector<int>col;
             for(auto q:p.second){
-                col.insert(col.end(),q.second.begin(),q.second.end());
+                // col.insert(col.end(),q.second.begin(),q.second.end());
+                for(auto d:q.second)
+                    col.push_back(d);
             }ans.push_back(col);
         }
         return ans;
