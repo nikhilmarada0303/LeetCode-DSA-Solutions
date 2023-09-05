@@ -15,8 +15,9 @@ class Solution {
         if(node==NULL) return 0;
         int left=func(node->left);
         int right=func(node->right);
+         if(abs(left-right)>1) return -1;
         if(left==-1 || right==-1) return -1;
-        if(abs(left-right)>1) return -1;
+       
         return 1+max(left,right);
     }
 public:
