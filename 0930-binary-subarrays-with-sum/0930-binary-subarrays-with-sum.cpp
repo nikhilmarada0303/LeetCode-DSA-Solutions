@@ -13,8 +13,8 @@ public:
             int rem=sum-goal;
             if(mp.find(rem)!=mp.end()){
                 cnt=cnt+mp[rem];
-                
-            }mp[sum]++;
+            }
+            mp[sum]++;
         }return cnt;
     }
 };
