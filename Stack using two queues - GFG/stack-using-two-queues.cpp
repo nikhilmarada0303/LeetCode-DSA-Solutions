@@ -61,15 +61,19 @@ void swap(queue<int>&q1,queue<int>&q2){
 
 void QueueStack :: push(int x)
 {
-     q2.push(x);
-     while(!q1.empty()){
-         q2.push(q1.front());
-         q1.pop();
-     }
-    //  queue<int> q = q1;
-    //     q1 = q2;
-    //     q2 = q;
-    swap(q1,q2);
+//      q2.push(x);
+//      while(!q1.empty()){
+//          q2.push(q1.front());
+//          q1.pop();
+//      }
+//     swap(q1,q2);
+    q1.push(x);
+    int size=q1.size();
+    for(int i=0;i<size-1;i++){
+        int num=q1.front();
+        q1.push(num);
+        q1.pop();
+    }
 }
  
 int QueueStack :: pop()
