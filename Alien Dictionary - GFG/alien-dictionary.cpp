@@ -9,31 +9,30 @@ using namespace std;
 
 class Solution{
     private:
-    vector<int> topoSort(int V, vector<int> adj[]) 
-	{
-	    vector<int>in_degree(V,0);
-	    for(int i=0;i<V;i++){
-			// incoming 
-	        for(auto it:adj[i])
-	            in_degree[it]++;
-	    }
-	    queue<int>q;
-	    vector<int>topo;
-	    for(int i=0;i<V;i++){
-	        if(in_degree[i]==0)
-	            q.push(i);
-	    }
-	    while(!q.empty()){
-	        int node=q.front();
-	        q.pop();
-	        topo.push_back(node);
-	        for(auto it:adj[node]){
-	            in_degree[it]--;
-	            if(in_degree[it]==0)
-	                q.push(it);
-	        }
-	    }return topo;
-	}
+    
+vector<int> func(vector<int>adj[],int k){
+    queue<int>q;
+    vector<int>inDegree(k,0);
+    for(int i=0;i<k;i++){
+        for(auto it:adj[i])
+            inDegree[it]++;
+    }
+    for(int i=0;i<inDegree.size();i++){
+        if(inDegree[i]==0)
+            q.push(i);
+    }
+    vector<int>topo;
+    while(!q.empty()){
+        int node=q.front();
+        q.pop();
+        topo.push_back(node);
+        for(auto it:adj[node]){
+            inDegree[it]--;
+            if(inDegree[it]==0)
+                q.push(it);
+        }
+    }return topo;
+}
     public:
     string findOrder(string dict[], int N, int K) {
         vector<int>adj[K];
@@ -48,10 +47,10 @@ class Solution{
                 }
             }
         }
-            vector<int>topo=topoSort(K,adj);
+            vector<int>topo=func(adj,K);
             string ans="";
             for(auto it:topo){
-                ans=ans+char(it+'a');
+                ans=ans+char(it+97);
             }return ans;
     }
 };
