@@ -1,12 +1,12 @@
 class Solution {
 public:
     int garbageCollection(vector<string>& garbage, vector<int>& travel) {
-        map<char,int>mp;
-        for(auto it:garbage){
-            for(int i=0;i<it.size();i++)
-                mp[it[i]]++;
-        }
-        int n=mp.size();
+        // map<char,int>mp;
+        // for(auto it:garbage){
+        //     for(int i=0;i<it.size();i++)
+        //         mp[it[i]]++;
+        // }
+        // int n=mp.size();
         int ans=0;
         int last_m=-1;
         int last_p=-1;
@@ -39,6 +39,8 @@ public:
                 ans=ans+travel[i];
             }
         }
+        
         return ans;
+
     }
 };
