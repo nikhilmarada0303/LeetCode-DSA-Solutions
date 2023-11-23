@@ -6,10 +6,10 @@ public:
             int a=l[i];
             int b=r[i];
             int g=b-a+1;
-            vector<int>c;
-            for(int j=a;j<=b;j++){
-                c.push_back(nums[j]);
-            }
+            vector<int>c(nums.begin()+a,nums.begin()+b+1);
+            // for(int j=a;j<=b;j++){
+            //     c.push_back(nums[j]);
+            // }
             sort(c.begin(),c.end());
             int flag=0;
             int diff=c[1]-c[0];
