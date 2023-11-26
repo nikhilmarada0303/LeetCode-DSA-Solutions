@@ -46,7 +46,7 @@ class compare{
     public:
     bool operator()(Node* a,Node* b){
         return a->data>b->data;
-    }
+    }   
 };
 class Solution{
   public:
@@ -54,8 +54,12 @@ class Solution{
     Node * mergeKLists(Node *arr[], int K)
     {
         priority_queue<Node*,vector<Node*>,compare>pq;
-        for(int i=0;i<K;i++)
-            pq.push(arr[i]);
+        for(int i=0;i<K;i++){
+            Node* j=arr[i];
+            while(j!=NULL){
+                pq.push(j);
+                j=j->next;}
+        }
         Node* temp=new Node(0);
         Node* head=temp;
         while(!pq.empty()){
@@ -63,9 +67,9 @@ class Solution{
             temp->next=it;
             pq.pop();
             temp=temp->next;
-            if(it->next){
-                pq.push(it->next);
-            }
+            // if(it->next){
+            //     pq.push(it->next);
+            // }
         }return head->next;
     }
 };
