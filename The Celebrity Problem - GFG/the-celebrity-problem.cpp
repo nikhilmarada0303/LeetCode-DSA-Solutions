@@ -34,11 +34,6 @@ class Solution
                 }
             }
             if(col && row){
-                for (int j = 0; j < n; j++) {
-                if (i != j && (arr[i][j] == 1 || arr[j][i] == 0)) {
-                    return -1; // The potential celebrity is not a celebrity
-                }
-            }
                 return i;}
         }return -1;
         
