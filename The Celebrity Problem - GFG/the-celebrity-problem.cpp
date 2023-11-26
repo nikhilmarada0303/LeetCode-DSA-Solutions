@@ -12,29 +12,26 @@ class Solution
     public:
     int celebrity(vector<vector<int> >& arr, int n) 
     {
-         if (n == 1) {
+        if (n == 1) {
         return 0;
-    }
+        }
         for(int i=0;i<n;i++){
-            bool row=false;
-            bool col=false;
+            bool row=true;
+            bool col=true;
             for(int j=0;j<n;j++){
-                if(arr[i][j]==0 )
-                    row=true;
-                else if(i!=j && arr[i][j]==1){
+                if(i!=j && arr[i][j]==1){
                     row=false;
-                    break;}
+                    break;
+                }
             }
             for(int j=0;j<n;j++){
-                if(arr[j][i]==1 && j!=i)
-                    col=true;
-                else if(j!=i && arr[j][i]==0){
+                if(j!=i && arr[j][i]==0){
                     col=false;
                     break;        
                 }
             }
-            if(col && row){
-                return i;}
+            if(col && row)
+                return i;
         }return -1;
         
         // stack<int>st;
