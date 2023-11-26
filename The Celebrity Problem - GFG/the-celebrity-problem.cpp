@@ -12,53 +12,65 @@ class Solution
     public:
     int celebrity(vector<vector<int> >& arr, int n) 
     {
-        // for(int i=0;i<n;i++){
-        //     bool row=false;
-        //     bool col=false;
-        //     for(int j=0;j<arr[1].size();j++){
-        //         if(arr[i][j]==0)
-        //             row=true;
-        //         else 
-        //             row=false;
-        //     }
-        //     for(int j=0;j<arr.size();j++){
-        //         if(arr[j][i]==1 && j!=i)
-        //             col=true;
-        //         else 
-        //             col=false;
-        //     }
-        //     if(col && row)
-        //         return i;
-        // }return -1;
+         if (n == 1) {
+        return 0;
+    }
+        for(int i=0;i<n;i++){
+            bool row=false;
+            bool col=false;
+            for(int j=0;j<n;j++){
+                if(arr[i][j]==0 )
+                    row=true;
+                else if(i!=j && arr[i][j]==1){
+                    row=false;
+                    break;}
+            }
+            for(int j=0;j<n;j++){
+                if(arr[j][i]==1 && j!=i)
+                    col=true;
+                else if(j!=i && arr[j][i]==0){
+                    col=false;
+                    break;        
+                }
+            }
+            if(col && row){
+                for (int j = 0; j < n; j++) {
+                if (i != j && (arr[i][j] == 1 || arr[j][i] == 0)) {
+                    return -1; // The potential celebrity is not a celebrity
+                }
+            }
+                return i;}
+        }return -1;
         
-        stack<int>st;
-        for(int i=n-1;i>=0;i--)
-            st.push(i);
+        // stack<int>st;
+        // for(int i=n-1;i>=0;i--)
+        //     st.push(i);
             
-        while(st.size()>1){
-            int a=st.top();
-            st.pop();
+        // while(st.size()>1){
+        //     int a=st.top();
+        //     st.pop();
             
-            int b=st.top();
-            st.pop();
+        //     int b=st.top();
+        //     st.pop();
             
-            if(arr[a][b]==1)
-                st.push(b);
-            else 
-                st.push(a);
-        }
-        int ans=st.top();
+        //     if(arr[a][b]==1)
+        //         st.push(b);
+        //     else 
+        //         st.push(a);
+        // }
+        // int ans=st.top();
         
-        for(int i=0;i<arr[ans].size();i++){         //row check
-            if(arr[ans][i]==1 && i!=ans) return -1;
-        }
-        for(int i=0;i<arr.size();i++){
-            if(arr[i][ans]==0 && ans!=i) return -1;
-        }
-        return ans;
+        // for(int i=0;i<arr[ans].size();i++){         //row check
+        //     if(arr[ans][i]==1 && i!=ans) return -1;
+        // }
+        // for(int i=0;i<arr.size();i++){
+        //     if(arr[i][ans]==0 && ans!=i) return -1;
+        // }
+        // return ans;
         
     }
 };
+
 
 //{ Driver Code Starts.
 
