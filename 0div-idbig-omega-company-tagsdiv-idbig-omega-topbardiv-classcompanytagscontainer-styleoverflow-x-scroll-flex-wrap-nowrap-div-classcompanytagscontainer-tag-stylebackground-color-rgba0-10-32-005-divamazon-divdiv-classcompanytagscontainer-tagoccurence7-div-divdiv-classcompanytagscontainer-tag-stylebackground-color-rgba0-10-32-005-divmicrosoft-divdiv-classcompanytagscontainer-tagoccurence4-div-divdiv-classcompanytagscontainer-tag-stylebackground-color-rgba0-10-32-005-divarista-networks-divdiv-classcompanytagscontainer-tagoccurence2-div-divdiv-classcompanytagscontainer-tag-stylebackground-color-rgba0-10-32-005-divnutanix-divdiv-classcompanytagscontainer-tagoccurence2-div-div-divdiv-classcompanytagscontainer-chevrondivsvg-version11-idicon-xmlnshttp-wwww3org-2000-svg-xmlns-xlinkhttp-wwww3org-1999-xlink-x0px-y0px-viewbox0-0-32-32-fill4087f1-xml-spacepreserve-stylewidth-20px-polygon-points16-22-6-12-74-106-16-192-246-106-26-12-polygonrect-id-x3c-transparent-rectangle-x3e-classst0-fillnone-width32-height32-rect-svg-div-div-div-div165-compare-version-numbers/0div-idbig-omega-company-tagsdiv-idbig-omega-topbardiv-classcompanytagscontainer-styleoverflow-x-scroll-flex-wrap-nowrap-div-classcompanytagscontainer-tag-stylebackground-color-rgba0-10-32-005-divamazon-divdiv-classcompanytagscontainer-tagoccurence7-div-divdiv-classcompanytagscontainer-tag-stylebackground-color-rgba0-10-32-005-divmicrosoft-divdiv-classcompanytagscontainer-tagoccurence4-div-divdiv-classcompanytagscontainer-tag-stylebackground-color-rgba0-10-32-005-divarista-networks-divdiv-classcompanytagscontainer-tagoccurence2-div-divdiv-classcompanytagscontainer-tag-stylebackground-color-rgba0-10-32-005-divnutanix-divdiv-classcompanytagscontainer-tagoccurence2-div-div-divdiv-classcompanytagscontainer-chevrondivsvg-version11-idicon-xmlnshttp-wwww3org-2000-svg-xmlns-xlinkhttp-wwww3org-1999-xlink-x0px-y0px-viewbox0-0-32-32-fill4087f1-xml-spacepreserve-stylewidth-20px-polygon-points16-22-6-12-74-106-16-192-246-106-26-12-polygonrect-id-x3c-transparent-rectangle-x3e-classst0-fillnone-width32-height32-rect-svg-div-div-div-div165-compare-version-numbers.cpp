@@ -24,7 +24,7 @@ public:
             v2.push_back(num);
         }
         
-        for(i=0;i<v1.size();i++)
+        for(i=0;i<v2.size();i++)
         {
             if(v1[i]<v2[i])
                 return -1;
