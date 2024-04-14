@@ -32,7 +32,7 @@ public:
         if(dp[ind1][ind2]!=-1) return dp[ind1][ind2];
         if(s[ind1]==t[ind2])
             return dp[ind1][ind2]=func(ind1-1,ind2-1,s,t,dp)+func(ind1-1,ind2,s,t,dp);
-        return dp[ind1][ind2]=func(ind1-1,ind2,s,t,dp);
+        else return  dp[ind1][ind2]=func(ind1-1,ind2,s,t,dp);
     }
 public:
     int numDistinct(string s, string t) {
