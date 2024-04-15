@@ -4,15 +4,17 @@ class Solution {
         if(k>=N) return false;
         int result=0;
         if(dp[i][j][k]!=-1) return dp[i][j][k];
+        int take=0;
+        int not_take=0;
         if(s1[i]==s3[k]){
-            result=func(i+1,j,k+1,m,n,N,s1,s2,s3,dp);
+            take=func(i+1,j,k+1,m,n,N,s1,s2,s3,dp);
         }
-        if(result==true) return dp[i][j][k]=true;
+        // if(result==true) return dp[i][j][k]=true;
         
         if(s2[j]==s3[k]){
-            result=func(i,j+1,k+1,m,n,N,s1,s2,s3,dp);
+            not_take=func(i,j+1,k+1,m,n,N,s1,s2,s3,dp);
         }
-        return dp[i][j][k]=result;
+        return dp[i][j][k]=take || not_take;
     }
 public:
     bool isInterleave(string s1, string s2, string s3) {
