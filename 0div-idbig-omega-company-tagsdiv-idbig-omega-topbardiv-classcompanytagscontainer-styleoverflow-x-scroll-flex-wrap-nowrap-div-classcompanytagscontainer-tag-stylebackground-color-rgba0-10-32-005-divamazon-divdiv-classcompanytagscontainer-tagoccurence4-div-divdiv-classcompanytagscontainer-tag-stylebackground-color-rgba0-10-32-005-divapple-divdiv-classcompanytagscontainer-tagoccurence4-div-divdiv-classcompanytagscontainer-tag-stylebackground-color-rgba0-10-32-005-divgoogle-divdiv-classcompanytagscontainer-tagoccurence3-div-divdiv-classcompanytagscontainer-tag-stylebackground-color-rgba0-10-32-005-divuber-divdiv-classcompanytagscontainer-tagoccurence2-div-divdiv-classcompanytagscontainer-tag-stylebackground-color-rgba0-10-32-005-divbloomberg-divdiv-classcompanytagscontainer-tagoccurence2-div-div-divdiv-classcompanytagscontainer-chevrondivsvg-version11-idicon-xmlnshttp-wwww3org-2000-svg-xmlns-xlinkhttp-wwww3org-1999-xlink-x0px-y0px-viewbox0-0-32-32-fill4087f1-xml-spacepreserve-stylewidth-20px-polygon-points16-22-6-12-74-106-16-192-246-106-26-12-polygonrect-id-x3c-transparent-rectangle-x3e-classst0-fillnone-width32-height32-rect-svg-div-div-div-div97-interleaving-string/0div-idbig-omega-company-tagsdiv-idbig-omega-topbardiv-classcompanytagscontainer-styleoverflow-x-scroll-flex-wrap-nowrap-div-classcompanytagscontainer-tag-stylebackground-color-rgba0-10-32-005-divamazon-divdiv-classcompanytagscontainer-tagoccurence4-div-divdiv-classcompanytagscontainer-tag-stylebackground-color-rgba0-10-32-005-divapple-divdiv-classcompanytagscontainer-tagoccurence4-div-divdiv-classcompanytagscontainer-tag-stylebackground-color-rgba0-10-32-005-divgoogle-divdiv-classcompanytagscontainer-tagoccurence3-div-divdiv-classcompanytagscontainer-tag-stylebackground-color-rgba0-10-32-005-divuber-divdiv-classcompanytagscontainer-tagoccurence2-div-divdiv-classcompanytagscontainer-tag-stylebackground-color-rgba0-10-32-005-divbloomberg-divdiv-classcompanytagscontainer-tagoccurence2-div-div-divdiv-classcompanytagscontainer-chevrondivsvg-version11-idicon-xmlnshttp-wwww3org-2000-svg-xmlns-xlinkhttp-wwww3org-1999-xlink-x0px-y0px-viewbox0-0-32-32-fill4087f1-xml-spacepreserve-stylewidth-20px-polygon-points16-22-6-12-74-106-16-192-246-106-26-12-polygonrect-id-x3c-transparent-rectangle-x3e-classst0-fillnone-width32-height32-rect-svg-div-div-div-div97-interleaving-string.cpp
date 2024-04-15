@@ -1,5 +1,5 @@
 class Solution {
-    bool func(int i,int j,int k,int m,int n,int N,string s1,string s2,string s3, vector<vector<vector<int>>>&dp){
+    bool func(int i,int j,int k,int m,int n,int N,string &s1,string &s2,string &s3, vector<vector<vector<int>>>&dp){
         if(i>=m && j>=n && k>=N) return true;
         if(k>=N) return false;
         int result=0;
